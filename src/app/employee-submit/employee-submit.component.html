@@ -1,0 +1,237 @@
+<div class="container">
+  <div class="alert alert-sucess" *ngIf="sucessMsg">
+      {{sucessMsg}}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+      <strong>{{errorMsg}}</strong>
+    </div>
+  <div class="row">
+    <div class="col-xs-12">
+  <div class="card">
+      <h4 class="card-title">Registration Form</h4>
+    <div class="card-body">
+
+
+      <form [formGroup]="employeeForm">
+        <div class="form-group">
+          <label for="firstName">FirstName:</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            class="form-control"
+            formControlName="firstName"
+            [ngClass]="{ 'is-invalid': firstName.touched && firstName.errors }"
+          />
+          <div *ngIf="firstName.errors" class="invalid-feedback">
+            <div *ngIf="firstName.errors.required">First Name is Required</div>
+            <div *ngIf="firstName.errors.minlength">
+              First Name must be Minimum of 5 characters
+            </div>
+            <div *ngIf="firstName.errors.maxlength">
+              First Name must be Maximum of 10 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            class="form-control"
+            formControlName="lastName"
+            [ngClass]="{ 'is-invalid': lastName.touched && lastName.errors }"
+          />
+          <div *ngIf="lastName.errors" class="invalid-feedback">
+            <div *ngIf="lastName.errors.required">Last Name is Required</div>
+            <div *ngIf="lastName.errors.minlength">
+              Last Name must be Minimum of 5 characters
+            </div>
+            <div *ngIf="lastName.errors.maxlength">
+              Last Name must be Maximum of 10 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="designation">Designation:</label>
+          <input
+            type="text"
+            name="designation"
+            formControlName="designation"
+            id="designation"
+            class="form-control"
+            placeholder=""
+            [ngClass]="{
+              'is-invalid': designation.touched && designation.errors
+            }"
+          />
+          <div *ngIf="designation.errors" class="invalid-feedback">
+            <div *ngIf="designation.errors.required">
+              Designation is Required
+            </div>
+            <div *ngIf="designation.errors.minlength">
+              Designation must be Minimum of 10 characters
+            </div>
+            <div *ngIf="designation.errors.maxlength">
+              Designation must be Maximum of 20 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              formControlName="teleCommuter"
+              name=""
+              id=""
+              value="true"
+              checked
+            />
+            Telecommuter
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Experience </label>
+          <input
+            type="text"
+            name="experience"
+            id="experience"
+            class="form-control"
+            formControlName="experience"
+            placeholder=""
+            aria-describedby="helpId"
+            [ngClass]="{
+              'is-invalid': experience.touched && experience.errors
+            }"
+          />
+          <div *ngIf="experience.errors" class="invalid-feedback">
+            <div *ngIf="experience.errors.required">experience is Required</div>
+            <div *ngIf="experience.errors.minlength">
+              experience must be Minimum of 1 character
+            </div>
+            <div *ngIf="experience.errors.maxlength">
+              experience must be Maximum of 2 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="currentLocation"> Current Location</label>
+          <input
+            type="text"
+            name="currentLocation"
+            id="currentLocation"
+            class="form-control"
+            formControlName="currentLocation"
+            placeholder=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="phoneNumber"
+            aria-describedby="helpId"
+            placeholder=""
+            formControlName="phoneNumber"
+            maxlength="12"
+            [ngClass]="{
+              'is-invalid': experience.touched && experience.errors
+            }"
+          />
+          <div *ngIf="phoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="phoneNumber.errors.required">
+              phoneNumber is Required
+            </div>
+            <div *ngIf="phoneNumber.errors.minlength">
+              phoneNumber must be Minimum of 10 character
+            </div>
+            <div *ngIf="phoneNumber.errors.maxlength">
+              phoneNumber must be Maximum of 12 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input
+            type="text"
+            class="form-control"
+            name="age"
+            id="age"
+            aria-describedby="helpId"
+            placeholder=""
+            formControlName="age"
+            maxlength="2"
+          />
+        </div>
+
+        <button
+          type="button"
+          name="employeeSubmit"
+          id="employeeSubmit"
+          (click)="employeeSave()"
+          [disabled]="!employeeForm.valid"
+          class="btn btn-primary"
+          btn-lg
+          btn-block
+        >
+          Submit Employee
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+  <div class="spacer">
+
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+
+
+
+          <table class="table table-dark" *ngIf="empList.length>0">
+              <thead>
+                <tr>
+                  <th scope="col">Sl No</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">currentLocation</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of empList;index as i">
+                  <th scope="row">{{emp.id}}</th>
+                  <td>{{emp.firstName}}</td>
+                  <td>{{emp.lastName}}</td>
+                  <td>{{emp.currentLocation}}</td>
+                  <td>{{emp.designation}}</td>
+                  <td>{{emp.age || 'Age Not found'}}</td>
+                  <td><button type="button" (click)="deleteEmployee(emp.id)"></button></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+    </div>
+
+
+  </div>

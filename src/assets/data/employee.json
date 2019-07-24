@@ -1,0 +1,6 @@
+[
+  { "firstName": "Aaquib", "lastName": "Nawaz", "designation": "Senior Software Engineer II", "salary": 1000, "location": "Bangalore India" },
+  { "firstName": "Akshath", "lastName": "Mallesh", "designation": "Principal Software Engineer", "salary":345678, "location": "Bangalore India" },
+  { "firstName": "Shilpa", "lastName": "Reddy", "designation": "Software Engineer", "salary":445678, "location": "Bangalore India" },
+  { "firstName": "Dmitry", "lastName": "Shablin", "designation": "Software Engineer", "salary":35678, "location": "Russia" }
+]
